@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Diaries</title>
+  <!-- Google Fonts Bungee -->
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <style>
+    /* Bungee font style */
+    .bungee-regular {
+      font-family: "Bungee", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* Blinking cursor */
+    .cursor-block {
+      display: inline-block;
+      width: 20px;
+      height: 1em; /* matches font size */
+      background-color: #272727;
+      margin-left: 5px;
+      vertical-align: bottom;
+      animation: blink 0.7s infinite;
+      border-radius: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 70vh;">
+    <h1 class="fw-bold mb-3 bungee-regular">
+      <span id="typed-text" class="bungee-regular"></span>
+      <span class="cursor-block"></span>
+    </h1>
+
+    <p class="lead text-muted mt-3">
+      Your space to explore, learn, and grow as a developer.<br />
+      Dive into the latest blogs on technology, coding trends, and developer insights.
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-4">
+      <a href="/blogs" class="btn btn-primary px-4 py-2 me-2">Explore Blogs</a>
+      <a href="/write-blog" class="btn btn-outline-primary px-4 py-2">Write a Blog</a>
+    </div>
+  </div>
+
+  <!-- Typing Animation Script -->
+  <script>
+    const typedText = document.getElementById("typed-text");
+    const cursor = document.querySelector(".cursor-block");
+
+    const textArray = [
+      "WELCOME to DEV DIARIES",
+      "BLOG for DEVELOPERS",
+      "Learn. Build. Share."
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingDelay = 100;
+    const erasingDelay = 60;
+    const newTextDelay = 1800;
+
+    function type() {
+      const currentText = textArray[textIndex];
+      if (!isDeleting && charIndex < currentText.length) {
+        typedText.textContent += currentText.charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+      } else if (isDeleting && charIndex > 0) {
+        typedText.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(type, erasingDelay);
+      } else {
+        if (!isDeleting) {
+          isDeleting = true;
+          setTimeout(type, newTextDelay);
+        } else {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % textArray.length;
+          setTimeout(type, typingDelay);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
+  </script>
+
+</body>
+</html>
