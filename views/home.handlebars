@@ -1,10 +1,10 @@
-<div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 70vh;">
+<div class="hero-container d-flex flex-column justify-content-center align-items-center text-center" style="height: 70vh;">
   <h1 class="fw-bold mb-3 bungee-regular">
     <span id="typed-text" class="bungee-regular"></span>
     <span class="cursor-block"></span>
   </h1>
 
-  <p class="lead text-muted mt-3">
+  <p class="lead mt-3">
     Your space to explore, learn, and grow as a developer.<br />
     Dive into the latest blogs on technology, coding trends, and developer insights.
   </p>
@@ -25,54 +25,23 @@
     const currentText = textArray[textIndex];
 
     if (!isDeleting && charIndex < currentText.length) {
-      // Typing forward
       typedText.textContent += currentText.charAt(charIndex++);
       setTimeout(type, typingDelay);
-
     } else if (isDeleting && charIndex > 0) {
-      // Deleting backward
       typedText.textContent = currentText.substring(0, charIndex - 1);
       charIndex--;
       setTimeout(type, erasingDelay);
-
     } else {
-      // Word finished typing or deleting
       if (!isDeleting) {
         isDeleting = true;
-        setTimeout(type, newTextDelay); // pause before deleting
+        setTimeout(type, newTextDelay);
       } else {
         isDeleting = false;
-        textIndex = (textIndex + 1) % textArray.length; // move to next word
-        setTimeout(type, typingDelay); // start typing new word
+        textIndex = (textIndex + 1) % textArray.length;
+        setTimeout(type, typingDelay);
       }
     }
   }
 
   document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
 </script>
-
-<style>
-  /* Bungee font style for title */
-  .bungee-regular {
-    font-family: "Bungee", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  /* Blinking cursor */
-  .cursor-block {
-    display: inline-block;
-    width: 20px;
-    height: 1em;
-    background-color: #272727;
-    margin-left: 5px;
-    vertical-align: bottom;
-    animation: blink 0.7s infinite;
-    border-radius: 2px;
-  }
-
-  @keyframes blink {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0; }
-  }
-</style>

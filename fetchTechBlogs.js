@@ -21,6 +21,10 @@ const Blog = mongoose.model("Blog", blogSchema);
 // ✅ Fetch blogs
 async function fetchBlogs() {
   try {
+    // Clear existing blogs first
+    await Blog.deleteMany({});
+    console.log("🗑️ Cleared existing blogs from MongoDB");
+
     const res = await axios.get("https://newsapi.org/v2/everything", {
       params: {
         q: "technology OR AI OR software OR web development",

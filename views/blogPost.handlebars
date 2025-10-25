@@ -1,25 +1,24 @@
-<div class="container my-5">
-  <h1 class="fw-bold text-primary mb-3">{{post.title}}</h1>
-  <p class="text-muted">Published on {{post.createdAt}}</p>
+<div class="blog-view-container">
+  <h1 class="blog-title">{{post.title}}</h1>
+  <p class="blog-meta">Published on {{post.createdAt}}</p>
 
   {{#if post.social_image}}
-    <img src="{{post.social_image}}" class="img-fluid mb-4" alt="Blog image">
+    <img src="{{post.social_image}}" class="blog-image" alt="Blog image">
   {{/if}}
 
-  <p class="lead">{{post.description}}</p>
+  <p class="blog-description">{{post.description}}</p>
 
-  <div>
-    {{{post.content}}} <!-- triple braces allow HTML if your content has formatting -->
+  <div class="blog-content">
+    {{{post.content}}} <!-- Allow HTML formatting -->
   </div>
 
   {{#if post.tags}}
-    <p class="mt-4">
-      Tags:
+    <div class="blog-tags">
       {{#each post.tags}}
-        <span class="badge bg-primary">{{this}}</span>
+        <span class="blog-tag">{{this}}</span>
       {{/each}}
-    </p>
+    </div>
   {{/if}}
 
-  <a href="/blogs" class="btn btn-outline-primary mt-4">Back to Blogs</a>
+  <a href="/blogs" class="btn-back">Back to Blogs</a>
 </div>

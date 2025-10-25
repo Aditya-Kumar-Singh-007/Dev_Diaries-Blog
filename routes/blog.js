@@ -27,10 +27,11 @@ router.get("/blogs", async(req, res) => {
 router.get("/blogs/:slug", async(req, res) => {
   try{
     const post = await Blog.findOne({slug:req.params.slug}).lean(); // <-- add .lean()
-    if(!post){
+    if(post){
+      res.render("blogPost", { title: post.title, post });}else{
       return res.status(404).send("Blog not found");
     }
-    res.render("blogPost", { title: post.title, post });
+    
   } catch(error){
     console.error(error);
     res.status(500).send("Error Fetching blog");
