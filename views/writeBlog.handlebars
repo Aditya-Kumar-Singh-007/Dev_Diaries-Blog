@@ -4,7 +4,7 @@
     Share your knowledge, insights, and experiences with the Dev Diaries community.
   </p>
 
-  <form action="/blogs/new" method="POST" enctype="multipart/form-data" class="mx-auto" style="max-width: 800px;">
+  <form action="/blogs/new" method="POST" class="mx-auto" style="max-width: 800px;">
     <div class="mb-3">
       <label class="form-label">Blog Title</label>
       <input type="text" name="title" class="form-control" placeholder="Enter a catchy blog title" required>
@@ -29,10 +29,15 @@
       <label class="form-label">Social Image URL (optional)</label>
       <input type="text" name="social_image" class="form-control" placeholder="https://example.com/image.jpg">
     </div>
-
+    <div class="mb-3">
+      <label class="form-label">External URL (optional)</label>
+      <input type="text" name="url" class="form-control" placeholder="https://example.com/your-blog">
+    </div>
     <div class="d-flex justify-content-end mt-4">
       <button type="button" class="btn btn-outline-secondary me-2">Preview</button>
       <button type="submit" class="btn btn-primary">Publish</button>
     </div>
+    
+
   </form>
 </div>

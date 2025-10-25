@@ -1,18 +1,24 @@
 <div class="container text-center my-4">
-
   <div class="row g-4 justify-content-center">
     {{#each blogs}}
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card h-100">
-          <img src="{{this.social_image}}" class="card-img-top" alt="..." />
+          <img 
+  src="{{#if this.social_image}}{{this.social_image}}{{else}}/blogdefault.jpg{{/if}}" 
+  class="card-img-top" 
+  alt="{{this.title}}" 
+/>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{this.title}}</h5>
             <p class="card-text">{{this.description}}</p>
-            <a href="{{this.url}}" target="_blank" class="btn btn-primary mt-auto">Read More</a>
+            <a href="{{#if this.url}}{{this.url}}{{else}}/blogs/{{this.slug}}{{/if}}" 
+               target="{{#if this.url}}_blank{{/if}}" 
+               class="btn btn-primary mt-auto">
+              Read More
+            </a>
           </div>
         </div>
       </div>
     {{/each}}
   </div>
-
 </div>

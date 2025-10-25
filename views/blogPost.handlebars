@@ -1,1 +1,25 @@
-this is about post {{{postTitle}}}
+<div class="container my-5">
+  <h1 class="fw-bold text-primary mb-3">{{post.title}}</h1>
+  <p class="text-muted">Published on {{post.createdAt}}</p>
+
+  {{#if post.social_image}}
+    <img src="{{post.social_image}}" class="img-fluid mb-4" alt="Blog image">
+  {{/if}}
+
+  <p class="lead">{{post.description}}</p>
+
+  <div>
+    {{{post.content}}} <!-- triple braces allow HTML if your content has formatting -->
+  </div>
+
+  {{#if post.tags}}
+    <p class="mt-4">
+      Tags:
+      {{#each post.tags}}
+        <span class="badge bg-primary">{{this}}</span>
+      {{/each}}
+    </p>
+  {{/if}}
+
+  <a href="/blogs" class="btn btn-outline-primary mt-4">Back to Blogs</a>
+</div>

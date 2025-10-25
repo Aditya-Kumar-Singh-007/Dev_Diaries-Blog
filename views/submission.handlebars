@@ -1,0 +1,14 @@
+<div class="container text-center my-5">
+  <h1 class="text-success mb-4">✅ Blog Published Successfully!</h1>
+  <p class="lead mb-5">
+    Your blog "<strong>{{urBlog.title}}</strong>" has been published.
+  </p>
+
+  <div class="d-flex justify-content-center gap-3">
+    <!-- Button to explore all blogs -->
+    <a href="/blogs" class="btn btn-primary btn-lg">Explore All Blogs</a>
+
+    <!-- Button to preview this blog -->
+    <a href="/blogs/{{urBlog.slug}}" class="btn btn-outline-secondary btn-lg">Preview Your Blog</a>
+  </div>
+</div>

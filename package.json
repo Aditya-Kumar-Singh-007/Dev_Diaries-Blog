@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A dynamic blog platform for developers built with **Node.js**, **Express**, and **Handlebars**.  \r Users can read, write, and explore developer blogs. Currently supports frontend functionality; MongoDB integration can be added later.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.12.2",
+    "body-parser": "^2.2.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
@@ -16,5 +18,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aditya-Kumar-Singh-007/Dev_Diaries-Blog.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Aditya-Kumar-Singh-007/Dev_Diaries-Blog/issues"
+  },
+  "homepage": "https://github.com/Aditya-Kumar-Singh-007/Dev_Diaries-Blog#readme"
 }
