@@ -8,7 +8,7 @@ Users can read, write, and explore developer blogs. Currently supports frontend 
 ## 🌐 Live Demo
 
 Check out the deployed app on Render:  
-[https://devdiaries-blog.onrender.com](https://devdiaries-blog.onrender.com)
+[hhttps://dev-diaries-blog-yget.onrender.com](https://dev-diaries-blog-yget.onrender.com)
 
 ---
 
