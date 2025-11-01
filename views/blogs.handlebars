@@ -7,9 +7,9 @@
   </div>
 
   <!-- Blog Cards -->
-  <div class="row g-4 justify-content-center">
+  <div class="row g-4 justify-content-center" id="blogContainer">
     {{#each blogs}}
-      <div class="col-12 col-md-6 col-lg-4">
+      <div class="col-12 col-md-6 col-lg-4 blog-card" data-title="{{this.title}}">
         <div class="card h-100">
           <img 
             src="{{#if this.social_image}}{{this.social_image}}{{else}}/blogdefault.jpg{{/if}}" 
@@ -19,6 +19,11 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{this.title}}</h5>
             <p class="card-text">{{this.description}}</p>
+            <div class="d-flex justify-content-end align-items-center mb-2">
+              <button class="btn btn-sm btn-outline-danger like-btn" data-slug="{{this.slug}}">
+                ❤️ <span class="like-count">0</span>
+              </button>
+            </div>
             <a href="{{#if this.url}}{{this.url}}{{else}}/blogs/{{this.slug}}{{/if}}" 
                target="{{#if this.url}}_blank{{/if}}" 
                class="btn btn-primary mt-auto">
@@ -29,4 +34,83 @@
       </div>
     {{/each}}
   </div>
+  
+  <!-- No Results Message -->
+  <div id="noResults" class="text-center mt-5" style="display: none;">
+    <h3 class="text-muted">🔍 No blogs found</h3>
+    <p class="text-muted">Try searching with different keywords</p>
+  </div>
 </div>
+
+<script>
+// 🔍 SEARCH FUNCTIONALITY
+// Logic: Filter blog cards by matching search input with blog titles
+const searchInput = document.getElementById('searchInput');
+const searchInputMobile = document.getElementById('searchInputMobile');
+const blogCards = document.querySelectorAll('.blog-card');
+const noResults = document.getElementById('noResults');
+
+function performSearch(searchTerm) {
+  let visibleCards = 0;
+  
+  blogCards.forEach(card => {
+    const title = card.getAttribute('data-title').toLowerCase();
+    if (title.includes(searchTerm.toLowerCase())) {
+      card.style.display = 'block';
+      visibleCards++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Show/hide no results message
+  if (noResults) {
+    noResults.style.display = visibleCards === 0 ? 'block' : 'none';
+  }
+}
+
+// Sync both search inputs
+function syncSearchInputs(value, excludeInput) {
+  if (searchInput && searchInput !== excludeInput) searchInput.value = value;
+  if (searchInputMobile && searchInputMobile !== excludeInput) searchInputMobile.value = value;
+}
+
+if (searchInput) {
+  searchInput.addEventListener('input', function() {
+    syncSearchInputs(this.value, this);
+    performSearch(this.value);
+  });
+}
+
+if (searchInputMobile) {
+  searchInputMobile.addEventListener('input', function() {
+    syncSearchInputs(this.value, this);
+    performSearch(this.value);
+  });
+}
+
+// ❤️ LIKE FUNCTIONALITY
+// Logic: Store likes in browser localStorage, increment on click
+document.querySelectorAll('.like-btn').forEach(btn => {
+  const slug = btn.getAttribute('data-slug');
+  const countSpan = btn.querySelector('.like-count');
+  
+  // Load existing likes from localStorage
+  const likes = localStorage.getItem(`likes_${slug}`) || 0;
+  countSpan.textContent = likes;
+  
+  btn.addEventListener('click', function() {
+    const currentLikes = parseInt(countSpan.textContent);
+    const newLikes = currentLikes + 1;
+    
+    countSpan.textContent = newLikes;
+    localStorage.setItem(`likes_${slug}`, newLikes);
+    
+    // Visual feedback
+    this.style.transform = 'scale(1.2)';
+    setTimeout(() => this.style.transform = 'scale(1)', 200);
+  });
+});
+
+
+</script>
