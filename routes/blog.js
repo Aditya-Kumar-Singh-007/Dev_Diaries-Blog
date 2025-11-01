@@ -72,8 +72,20 @@ router.post("/blogs/new", async (req, res) => {
 
 
 //about
-router.get("/about", (req, res) => {
-  res.render("about", { title: "About Us" });
+router.get("/about", async (req, res) => {
+  try {
+    const blogCount = await Blog.countDocuments();
+    res.render("about", { 
+      title: "About Us",
+      blogCount 
+    });
+  } catch (error) {
+    console.error(error);
+    res.render("about", { 
+      title: "About Us",
+      blogCount: 0 
+    });
+  }
 });
 
 

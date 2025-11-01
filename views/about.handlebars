@@ -79,16 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Stats Counter -->
     <div class="stats-container">
       <div class="stat-item">
-        <span class="stat-number" data-target="500">0</span>
+        <span class="stat-number" data-target="{{blogCount}}">0</span>
         <span class="stat-label">Articles</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number" data-target="1200">0</span>
-        <span class="stat-label">Developers</span>
+        <span class="stat-number" data-target="{{#if blogCount}}{{multiply blogCount 2}}{{else}}0{{/if}}">0</span>
+        <span class="stat-label">Readers</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number" data-target="50">0</span>
-        <span class="stat-label">Countries</span>
+        <span class="stat-number" data-target="{{#if blogCount}}{{add blogCount 15}}{{else}}15{{/if}}">0</span>
+        <span class="stat-label">Topics</span>
       </div>
     </div>
   </section>

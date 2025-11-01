@@ -11,7 +11,12 @@ const app = express();
 
 // --- Handlebars setup ---
 const { engine } = require('express-handlebars');
-app.engine('handlebars', engine());
+app.engine('handlebars', engine({
+  helpers: {
+    multiply: (a, b) => a * b,
+    add: (a, b) => a + b
+  }
+}));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views')); // absolute path
 
